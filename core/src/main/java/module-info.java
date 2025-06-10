@@ -23,6 +23,8 @@
  ******************************************************************************/
 
 import io.questdb.griffin.FunctionFactory;
+import io.questdb.griffin.engine.functions.cast.CastNullTypeFunctionFactory;
+import io.questdb.griffin.engine.functions.math.*;
 
 open module io.questdb {
     requires transitive jdk.unsupported;
@@ -386,7 +388,7 @@ open module io.questdb {
             io.questdb.griffin.engine.functions.cast.CastLongToStrFunctionFactory,
             io.questdb.griffin.engine.functions.cast.CastLongToDateFunctionFactory,
             io.questdb.griffin.engine.functions.cast.CastLongToTimestampFunctionFactory,
-            io.questdb.griffin.engine.functions.cast.CastNullTypeFunctionFactory,
+            CastNullTypeFunctionFactory,
             io.questdb.griffin.engine.functions.cast.CastLongToSymbolFunctionFactory,
             io.questdb.griffin.engine.functions.cast.CastLongToLong256FunctionFactory,
             io.questdb.griffin.engine.functions.cast.CastLongToBooleanFunctionFactory,
@@ -763,7 +765,6 @@ open module io.questdb {
             // analytic functions
             io.questdb.griffin.engine.functions.analytic.RowNumberFunctionFactory,
             io.questdb.griffin.engine.functions.analytic.RankFunctionFactory,
-            io.questdb.griffin.engine.functions.analytic.SmavgFunctionFactory,
 
             // metadata functions
             io.questdb.griffin.engine.functions.metadata.BuildFunctionFactory,
@@ -772,22 +773,22 @@ open module io.questdb {
             // bin functions
             io.questdb.griffin.engine.functions.bin.Base64FunctionFactory,
             // bit operations
-            io.questdb.griffin.engine.functions.math.BitwiseAndLongFunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseOrLongFunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseNotLongFunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseXorLongFunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseAndIPv4FunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseAndIPv4StrFunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseAndIntFunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseAndStrIPv4FunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseOrIPv4FunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseOrIPv4StrFunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseOrStrIPv4FunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseOrIntFunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseNotIPv4FunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseNotIPv4StrFunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseNotIntFunctionFactory,
-            io.questdb.griffin.engine.functions.math.BitwiseXorIntFunctionFactory,
+            BitwiseAndLongFunctionFactory,
+            BitwiseOrLongFunctionFactory,
+            BitwiseNotLongFunctionFactory,
+            BitwiseXorLongFunctionFactory,
+            BitwiseAndIPv4FunctionFactory,
+            BitwiseAndIPv4StrFunctionFactory,
+            BitwiseAndIntFunctionFactory,
+            BitwiseAndStrIPv4FunctionFactory,
+            BitwiseOrIPv4FunctionFactory,
+            BitwiseOrIPv4StrFunctionFactory,
+            BitwiseOrStrIPv4FunctionFactory,
+            BitwiseOrIntFunctionFactory,
+            BitwiseNotIPv4FunctionFactory,
+            BitwiseNotIPv4StrFunctionFactory,
+            BitwiseNotIntFunctionFactory,
+            BitwiseXorIntFunctionFactory,
 
             // ipv4 operators
             io.questdb.griffin.engine.functions.math.IPv4PlusIntFunctionFactory,

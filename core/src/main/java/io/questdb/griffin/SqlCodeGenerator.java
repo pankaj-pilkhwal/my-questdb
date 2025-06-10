@@ -2766,10 +2766,7 @@ public class SqlCodeGenerator implements Mutable, Closeable {
         }
     }
 
-    private RecordCursorFactory generateSelectAnalytic(
-            QueryModel model,
-            SqlExecutionContext executionContext
-    ) throws SqlException {
+    private RecordCursorFactory generateSelectAnalytic(QueryModel model, SqlExecutionContext executionContext) throws SqlException {
         final RecordCursorFactory base = generateSubQuery(model, executionContext);
         final RecordMetadata baseMetadata = base.getMetadata();
         final ObjList<QueryColumn> columns = model.getColumns();
@@ -2796,7 +2793,7 @@ public class SqlCodeGenerator implements Mutable, Closeable {
         final IntList columnIndexes = new IntList();
         for (int i = 0; i < columnCount; i++) {
             final QueryColumn qc = columns.getQuick(i);
-            if (!qc.isWindowColumn()) {
+            if (!(qc instanceof AnalyticColumn)) {
                 final int columnIndex = baseMetadata.getColumnIndexQuiet(qc.getAst().token);
                 final TableColumnMetadata m = baseMetadata.getColumnMetadata(columnIndex);
                 chainMetadata.add(i, m);
@@ -2836,7 +2833,7 @@ public class SqlCodeGenerator implements Mutable, Closeable {
         deferredAnalyticMetadata.clear();
         for (int i = 0; i < columnCount; i++) {
             final QueryColumn qc = columns.getQuick(i);
-            if (qc.isWindowColumn()) {
+            if (qc instanceof AnalyticColumn) {
                 final AnalyticColumn ac = (AnalyticColumn) qc;
                 final ExpressionNode ast = qc.getAst();
                 if (ast.paramCount > 1) {
